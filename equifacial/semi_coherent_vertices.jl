@@ -11,14 +11,14 @@ include("../src/su2functions.jl")
 using .su2functions
 
 #export functions 
-export cohnvertex
+export cohn_vertex
 
 
 """
 Compute the coherent vetex amplitude for equal spins j and normal vectors nv  
 """
 
-function cohnvertex(j,nv)
+function cohn_vertex(j,nv)
     # compute coherent 4j vector (with a phase)
     vc = vector_coherent4jPh(j*ones(4),nv)
     sol = 0.0im
