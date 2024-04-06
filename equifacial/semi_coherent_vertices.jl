@@ -11,7 +11,10 @@ include("../src/su2functions.jl")
 using .su2functions
 
 #export functions 
-export cohn_vertex
+export  cohn_vertex,
+        wig3j,
+        wig6j,
+        wignermatrix
 
 
 """
