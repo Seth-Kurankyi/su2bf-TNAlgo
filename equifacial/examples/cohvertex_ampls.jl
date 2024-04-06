@@ -24,11 +24,12 @@ dataB = []
 @simd for i in spins 
     ss = @timed cohn_vertex(i,nn)
     push!(dataA,[i,ss.value,ss.time,ss.bytes] )
-    println("spin j = $i,"," ftime = ",ss.time)
+    print(" spin j = $i,"," ftime = ",ss.time," ,")
     
     ss = @timed cohn_vertex(i,nn)
     push!(dataB,[i,ss.value,ss.time,ss.bytes] )
-    println("spin j = $i,"," ctime = ",ss.time)
+    print(" ctime = ",ss.time)
+    println(" ")
 
     # empty memoize functions to free up memory space 
     empty!(memoize_cache(wig3j))
