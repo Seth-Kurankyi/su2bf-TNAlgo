@@ -3,7 +3,7 @@ Module `semi_coherent_vertex` compute the coherent vertex amplitude for equal sp
     The 'semi' refers to mixture of boundary and bulk edges or intertwiners 
 """
 
-module semi_coherent_vertex
+module semi_coherent_vertices
 
 #include su2 functions from src 
 include("../src/su2functions.jl")
