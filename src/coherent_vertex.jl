@@ -1,10 +1,21 @@
+"""
+Module `coherent_vertex` compute the coherent vertex amplitude for generic spin assignments and normal vectors in terms of matrix contractions
+"""
 
-"""
-Compute the coherent vertex amplitude for generic spin assignments in terms ofmatrix contractions 
-"""
+module coherent_vertex
+
 # use functions from su2functions 
 include("su2functions.jl")
 using .su2functions
+
+
+#export the following 
+
+export  wig3j, 
+        wig6j, 
+        wignermatrix, 
+        cohnX_vertex,
+        cohn_vertex
 
 
 """
@@ -76,3 +87,6 @@ function cohn_vertex(jays,nvs)
     return sol
 end
 
+
+#end module 
+end
