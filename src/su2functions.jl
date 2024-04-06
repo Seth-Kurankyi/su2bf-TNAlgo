@@ -152,7 +152,7 @@ end
 Compute a vector of coherent 4j symbol for all possible values of iota
 """
 function vector_coherent4j(js, nvecs)::Vector{ComplexF64}
-    #js is a vector of spins 
+    #js is a vector of 4 spins 
     itr = intw_range(js)
     ls = length(itr)
     #create a vector for the length of range of the intertwiner
@@ -160,24 +160,80 @@ function vector_coherent4j(js, nvecs)::Vector{ComplexF64}
     @simd for i in 1:ls
         sol[i] = dim_j(itr[i])*coherent4j(itr[i],js,nvecs)
     end
-    sol
+    return sol
 end
 
 # Compute vector of coherent 4j amplitudes with phase
 function vector_coherent4jPh(js, nvecs)::Vector{ComplexF64}
-    # Implementation of vector_coherent4jPh function...
+    #js is a vector of 4 spins 
+    itr = intw_range(js)
+    ls = length(itr)
+    #create a vector for the length of range of the intertwiner
+    sol = Vector{ComplexF64}(undef, ls)
+    @simd for i in 1:ls
+        sol[i] = (-1.0+0.0im)^(itr[i])*dim_j(itr[i])*coherent4j(itr[i],js,nvecs)
+    end
+    return sol
 end
 
 # Functions for Wigner 6j symbols
 
-# Memoized version of Wigner 6j symbol
+"""
+Memoized version of Wigner 6j symbol
+"""
 @memoize function wig6j(j1, j2, j3, j4, j5, j6)::Float64
-    # Implementation of wig6j function...
+    return wigner6j(j1, j2, j3, j4, j5, j6)
 end
 
-# Compute Wigner 6j matrix
+"""
+Compute Wigner 6j symbol (i1, ja, jb ; i2, jb, jc) as a matrix in the indices i1, i2   
+"""
 function wig6j_matrix(IRs, ja, x, jb, jc)
-    # Implementation of wig6j_matrix function...
+    I1,I2 = IRs # range of values for indices i1, i2 (intertwiners)
+    l1,l2 = length(I1), length(I2)
+    sol = Matrix{Float64}(undef, l1, l2) 
+    if is_pair(x,ja) && is_pair(x,jb) && is_pair(ja,jc) && is_pair(jb,jc)
+        if ja == jb && I1 == I2 # the matrix is symmetric
+            ir1 = intw_range(x,ja,jb,jc)
+            if !isempty(ir1)
+                for i1 in 1:l1
+                    if I1[i1] in ir1
+                        @simd for i2 in i1:l1
+                            sol[i2,i1]  = sol[i1,i2] = wig6j(I1[i1],ja,x,I1[i2],jb,jc)
+                        end
+                    else
+                        fill!(view(sol, i1, :), 0.0)
+                        fill!(view(sol, :, i1), 0.0)
+                    end
+                end
+            else
+                fill!(view(sol, :, :), 0.0)
+            end
+        else
+            ir1 = intw_range(x,ja,jb,jc)
+            ir2 = intw_range(x,jb,ja,jc)
+             if !isempty(ir1) || !isempty(ir2)
+                for i1 in 1:l1
+                    if I1[i1] in ir1
+                        @simd for i2 in 1:l2
+                            if I2[i2] in ir2
+                                sol[i1,i2] = wig6j(I1[i1],ja,x,I2[i2],jb,jc)
+                            else
+                                sol[i1,i2] = 0.0
+                            end
+                        end
+                    else 
+                        fill!(view(sol, i1, :), 0.0)
+                    end
+                end
+            else
+                fill!(view(sol, :, :), 0.0)
+            end
+        end
+    else
+        fill!(view(sol, :, :), 0.0)
+    end
+    return sol
 end
 
 end # module
