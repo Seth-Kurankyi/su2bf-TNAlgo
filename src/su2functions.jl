@@ -74,9 +74,11 @@ function wignermatrix_ang(j, m, phi, theta)::ComplexF64
         return j == m ? 1.0 : 0.0
     elseif isapprox(cos_th2,0.0) # Check if cos(θ/2) ≈ 0.0
         return j == -m ? 1.0 : 0.0
-    elseif m == 0.0 # for m=0 binomial function simplies in terms of catalan numbers 
+    # for m = 0, the binomial function simplies in terms of catalan numbers 
+    elseif m == 0.0 
         return sqrt((j + 1) * catalannum(Int(j))) * (cos_th2 * sin_th2 * exp(-im * phi)) ^ j
-    elseif m == 1.0 || m == -1.0 # for m=1 binomial function simplies in terms of catalan numbers 
+    # for m = 1, the binomial function simplies in terms of catalan numbers
+    elseif m == 1.0 || m == -1.0  
         return sqrt(j * catalannum(Int(j))) * (cos_th2) ^ (j + m) * (sin_th2 * exp(-im * phi)) ^ (j - m)
     else
         # For j > 33 use BigInt to avoid overflows in the binomial function
