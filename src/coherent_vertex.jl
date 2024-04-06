@@ -52,7 +52,7 @@ end
 
 
 """
-Compute the coherent vetex amplitude for given the spins and normal vectors as inputs
+Compute the coherent vertex amplitude for given the spins and normal vectors as inputs
 """
 function cohn_vertex(jays,nvs)
     j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
