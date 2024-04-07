@@ -17,7 +17,7 @@ println("---------- Initialize computation time ------------ ")
 
 println("----------- Start vertex computations ------ ")
 
-spins = 0.0:0.5:100.0
+spins = 100.5:0.5:150.0
 
 eqdataF = []
 eqdataC = []
