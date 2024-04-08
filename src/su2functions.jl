@@ -90,6 +90,7 @@ end
 """
 Compute components of Wigner matrix as a function of 3D unit normal vecto in the |+> 
 """
+# Note that the normal vector nv (input) has to a unit vector |nv|=1! 
 function wignermatrix_nvec(j, m, nv)::ComplexF64
     return wignermatrix_ang(j,m,atan(nv[2],nv[1]),acos(nv[3]))
 end
