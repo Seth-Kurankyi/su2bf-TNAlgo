@@ -23,7 +23,8 @@ Compute the coherent vetex amplitude for fixed virtual spin x:
     the coherent {4j} vectors are considered as inputs
 """
 function cohnX_vertex(x,jays,vcs)
-    #note the order of the spins 
+    #note the order of the spins, 1,2,3,4,5 labels the edges (tetrahedron)
+    # the labels are equivalent to the bar notation where 1,2,3,4,5 label vertices.. 
     j12, j13, j14, j15, j23, j24, j25, j34, j35, j45 = jays
 
     #the groups of 4j intertwiner ranges must be consistent with the spin assignments 
