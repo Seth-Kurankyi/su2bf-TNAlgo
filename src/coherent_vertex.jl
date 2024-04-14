@@ -15,7 +15,8 @@ export  wig3j,
         wig6j, 
         wignermatrix, 
         cohnX_vertex,
-        cohn_vertex
+        cohn_vertex1
+        cohn_vertex2
 
 
 """
@@ -56,7 +57,7 @@ end
 """
 Compute the coherent vertex amplitude for given the spins and normal vectors as inputs
 """
-function cohn_vertex(jays,nvs)
+function cohn_vertex1(jays,nvs)
     j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
     nv1,nv2,nv3,nv4,nv5 = nvs
     
@@ -65,8 +66,44 @@ function cohn_vertex(jays,nvs)
         Note that order of the spins should match the intertwiners and also match the order of the normal vectors (inputs)
     """
     # The order of the spins are the same as the order of the unit normal vectors as inputs
-    #jjs = (j12,j13,j14,j15),(j24,j23,j12,j25),(j13,j23,j34,j35),(j34,j24,j14,j45),(j15,j25,j35,j45)
     jjs = (j12,j13,j14,j15),(j23,j24,j25,j12),(j34,j35,j13,j23),(j45,j14,j24,j34),(j15,j25,j35,j45)
+
+        
+    # intertwiner ranges 
+    #I1,I2,I3,I4,I5 = intw_range.(jjs)
+
+    # compute the coherent {4j} vector for all 5 boundary edges 
+    vcs = Dict()
+    for i in 1:5 
+        vcs[i] = vector_coherent4jPh(jjs[i],nvs[i])
+    end
+    
+    #vcs = vc1,vc2,vc3,vc4,vc5
+    
+    sol = 0.0im 
+    # range of values for the virtual spin 
+    x_range = min( min(j12+j13,j14+j15)+j23, min(j24+j23,j12+j25)+j13, min(j13+j23,j34+j35)+j24,
+                min(j34+j24,j14+j45)+j35 , min(j15+j25,j35+j45)+j14 )
+    
+    @simd for x in x_range:-1:0
+        sol += (-1.0+0.0im)^(sum(jays))*(dim_j(x))*cohnX_vertex(x,jays,vcs)
+    end
+    return sol
+end
+
+"""
+Coherent vertex amplitude for given the spins and normal vectors as inputs with different ordering 
+"""
+function cohn_vertex2(jays,nvs)
+    j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
+    nv1,nv2,nv3,nv4,nv5 = nvs
+    
+    # !!!!!!!   IMPORTANT   !!!!!!!
+    """ The order of the spins are crucial for the matching the coherent vectors and the input normal vectors: 
+        Note that order of the spins should match the intertwiners and also match the order of the normal vectors (inputs)
+    """
+    # The order of the spins are the same as the order of the unit normal vectors as inputs
+    jjs = (j12,j13,j14,j15),(j24,j23,j12,j25),(j13,j23,j34,j35),(j34,j24,j14,j45),(j15,j25,j35,j45)
 
         
     # intertwiner ranges 
