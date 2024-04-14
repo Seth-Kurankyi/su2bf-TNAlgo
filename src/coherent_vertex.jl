@@ -33,23 +33,23 @@ function cohnX_vertex(x,jays,vcs)
     intw_range(j45, j14, j24, j34), intw_range(j15, j25, j35, j45)
     
     # multiply components (of the first index) of the wigner 6j matrix by the coherent 4j vector (for the intertwiner index)
-    w61 = wig6j_matrix((I1,I2),j25,x,j13,j12)
-    w61 = w61 .* vcs[1]
+    w612 = wig6j_matrix((I1,I2),j25,x,j13,j12)
+    w612 = w612 .* vcs[1]
 
-    w62 = wig6j_matrix((I2,I3),j13,x,j24,j23)
-    w62 = w62 .* vcs[2]
+    w623 = wig6j_matrix((I2,I3),j13,x,j24,j23)
+    w623 = w623 .* vcs[2]
 
-    w63 = wig6j_matrix((I3,I4),j24,x,j35,j34)
-    w63 = w63 .* vcs[3]
+    w634 = wig6j_matrix((I3,I4),j24,x,j35,j34)
+    w634 = w634 .* vcs[3]
 
-    w64 = wig6j_matrix((I4,I5),j35,x,j14,j45)
-    w64 = w64 .* vcs[4]
+    w645 = wig6j_matrix((I4,I5),j35,x,j14,j45)
+    w645 = w645 .* vcs[4]
 
-    w65 = wig6j_matrix((I5,I1),j14,x,j25,j15)
-    w65 = w65 .* vcs[5]
+    w651 = wig6j_matrix((I5,I1),j14,x,j25,j15)
+    w651 = w651 .* vcs[5]
     
     # compute trace of matrix multiplications for the intertwiners 
-    return sum( transpose(w61) .* (w62 * w63 * w64 * w65) )
+    return sum( transpose(w612) .* (w623 * w634 * w645 * w651) )
 end
 
 
