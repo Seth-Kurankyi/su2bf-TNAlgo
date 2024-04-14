@@ -55,4 +55,4 @@ end
 
 k1,k2=spins[1],spins[end]
 
-#@save "isovertex_$k1-to-$k2.jld2" eqdataF eqdataC
+@save "isovertex_$k1-to-$k2.jld2" eqdataF eqdataC
