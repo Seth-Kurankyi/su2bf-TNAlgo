@@ -1,6 +1,6 @@
 #include module(s)
-include("../semi_coherent_vertices.jl")
-using .semi_coherent_vertices
+include("../src/coherent_vertex.jl")
+using .coherent_vertex
 
 
 # use the following packages for the computation 
@@ -11,6 +11,10 @@ nn= [[0.0, 0.0, 1.0], [0.0, 2sqrt(2)/3, -1/3],
     [sqrt(2/3), -sqrt(2)/3, -1/3], 
     [-sqrt(2/3), -sqrt(2)/3, -1/3]];
 
+
+function cohn_vertex(j,nn) 
+    return cohn_vertex1(j*ones(10),[nn,nn,nn,nn,nn])
+end
 
 println("---------- Initialize computation time ------------ ")
 @time cohn_vertex(1,nn);
@@ -24,11 +28,11 @@ eqdataC = []
 @simd for i in spins 
     ss = @timed cohn_vertex(i,nn)
     push!(eqdataF,[i,ss.value,ss.time,ss.bytes] )
-    print(" spin j = $i,"," ftime = ",ss.time," ,")
+    print(" spin j = $i,"," ftime = ",ss.time)
     
-    ss = @timed cohn_vertex(i,nn)
-    push!(eqdataC,[i,ss.value,ss.time,ss.bytes] )
-    print(" ctime = ",ss.time)
+    # ss = @timed cohn_vertex(i,nn)
+    # push!(eqdataC,[i,ss.value,ss.time,ss.bytes] )
+    # print(", ctime = ",ss.time)
     println(" ")
 
     # empty memoize functions to free up memory space 

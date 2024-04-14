@@ -15,7 +15,7 @@ export  wig3j,
         wig6j, 
         wignermatrix, 
         cohnX_vertex,
-        cohn_vertex1
+        cohn_vertex1,
         cohn_vertex2
 
 
