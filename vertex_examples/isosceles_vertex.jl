@@ -30,7 +30,7 @@ println("---------- Initialize computation time ------------ ")
 
 println("----------- Start vertex computations ------ ")
 
-spins = 0.0:50.0
+spins = 0.0:100.0
 
 isodataF = []
 isodataC = []
