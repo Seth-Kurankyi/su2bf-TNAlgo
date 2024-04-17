@@ -21,7 +21,7 @@ println("---------- Initialize computation time ------------ ")
 
 println("----------- Start vertex computations ------ ")
 
-spins = 0.0:0.5:20.0
+spins = 70.5:0.5:90.0
 
 eqdataF = []
 eqdataC = []
@@ -30,9 +30,9 @@ eqdataC = []
     push!(eqdataF,[i,ss.value,ss.time,ss.bytes] )
     print(" spin j = $i,"," ftime = ",ss.time)
     
-    # ss = @timed cohn_vertex(i)
-    # push!(eqdataC,[i,ss.value,ss.time,ss.bytes] )
-    # print(", ctime = ",ss.time)
+    ss = @timed cohn_vertex(i)
+    push!(eqdataC,[i,ss.value,ss.time,ss.bytes] )
+    print(", ctime = ",ss.time)
     println(" ")
 
     # empty memoize functions to free up memory space 
@@ -46,4 +46,4 @@ end
 
 k1,k2=spins[1],spins[end]
 
-#@save "equivertex_$k1-to-$k2.jld2" eqdataF eqdataC
+@save "equivertex_$k1-to-$k2.jld2" eqdataF eqdataC
