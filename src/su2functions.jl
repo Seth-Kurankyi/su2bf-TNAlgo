@@ -17,7 +17,8 @@ export  is_ang,
         coherent4j, 
         vector_coherent4j, 
         vector_coherent4jPh,
-        wig6j_matrix
+        wig6j_matrix,
+        intw6j_matrix
 
 #======== Utility functions for SU(2) angular momentum and Wigner symbols ============#
 
