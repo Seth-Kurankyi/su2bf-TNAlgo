@@ -23,7 +23,7 @@ Compute the coherent vetex amplitude for equal spins j and normal vectors nv
 """
 
 function cohn_vertex(j,nv)
-    # compute coherent 4j vector (with a phase)
+    # compute the coherent 4j vector (with a phase)
     vc = vector_coherent4jPh(j*ones(4),nv)
     sol = 0.0im
     @simd for x in 3j:-1.0:0.0
