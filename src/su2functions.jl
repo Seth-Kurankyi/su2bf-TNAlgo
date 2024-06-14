@@ -268,7 +268,7 @@ Compute coherent 6j-intertwiner matrix as a product of wigner 6j matrix and cohe
 # end
 
 function coherent_intw6j_matrix(cohvecph,IRs, ja, x, jb, jc)
-    w6j = wig6j_matrix(IRs, ja, x, jb, jc)
+    w6j = intw6j_matrix(IRs, ja, x, jb, jc)
     return w6j .* cohvecph 
 end
 
