@@ -9,7 +9,8 @@ using LinearAlgebra, Combinatorics, HalfIntegers, WignerSymbols, Memoize
 # Exported functions
 export  is_ang, 
         is_pair, 
-        intw_range, 
+        intw_range,
+        virtualx_range, 
         dim_j, 
         wig3j, 
         wig6j, 
@@ -18,7 +19,8 @@ export  is_ang,
         vector_coherent4j, 
         vector_coherent4jPh,
         wig6j_matrix,
-        intw6j_matrix
+        intw6j_matrix,
+        coherent_wig6j_matrix
 
 #======== Utility functions for SU(2) angular momentum and Wigner symbols ============#
 
