@@ -53,6 +53,21 @@ Compute the dimension of spin j
 """
 dim_j(j)::Float64 = twice(j) + 1.0
 
+
+"""
+Compute range for virtual spin as function of 10 spins 
+"""
+function virtualx_range(j12, j13, j14, j15, j23, j24, j25, j34, j35, j45)
+    return min( min(j12+j13,j14+j15)+j23, min(j24+j23,j12+j25)+j13, min(j13+j23,j34+j35)+j24,
+    min(j34+j24,j14+j45)+j35 , min(j15+j25,j35+j45)+j14 ) : -1 :0
+end
+
+
+function virtualx_range(jays)
+    j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
+    return virtualx_range(j12, j13, j14, j15, j23, j24, j25, j34, j35, j45)
+end
+
 #========= Functions for Wigner matrices of a unit normal vector n ==============#
 
 """
@@ -242,7 +257,7 @@ end
 
 
 """
-Compute coherent 6j-intertwiner matrix which is a product of wigner 6j matrix and coherent 4j vector    
+Compute coherent 6j-intertwiner matrix as a product of wigner 6j matrix and coherent 4j vector    
 """
 
 # function coherent_wig6j_matrix(IRs, ja, x, jb, jc,j1,j2,nvs)
