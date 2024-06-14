@@ -240,4 +240,21 @@ function wig6j_matrix(IRs, ja, x, jb, jc)
     return sol
 end
 
+
+"""
+Compute coherent 6j-intertwiner matrix which is a product of wigner 6j matrix and coherent 4j vector    
+"""
+
+# function coherent_wig6j_matrix(IRs, ja, x, jb, jc,j1,j2,nvs)
+#     w6j = wig6j_matrix(IRs, ja, x, jb, jc)
+#     vecph = vector_coherent4jPh(jb,jc,j1,j2,nvs)
+#     return w6j .* vecph 
+# end
+
+function coherent_wig6j_matrix(cohvecph,IRs, ja, x, jb, jc)
+    w6j = wig6j_matrix(IRs, ja, x, jb, jc)
+    return w6j .* cohvecph 
+end
+
+
 end # module
