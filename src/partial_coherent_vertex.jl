@@ -31,15 +31,15 @@ function partial_cohnX_vertex1(x,jays,vcs)
     intw_range(j45, j14, j24, j34), intw_range(j15, j25, j35, j45)
     
     # multiply components (of the first index) of the wigner 6j matrix by the coherent 4j vector (for the intertwiner index)
-    w6j12 = wig6j_matrix((I1,I2),j25,x,j13,j12)
+    w6j12 = intw6j_matrix((I1,I2),j25,x,j13,j12)
 
-    f6j23 = coherent_wig6j_matrix(vcs[1],(I2,I3),j13,x,j24,j23)
+    f6j23 = coherent_intw6j_matrix(vcs[1],(I2,I3),j13,x,j24,j23)
 
-    f6j34 = coherent_wig6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
+    f6j34 = coherent_intw6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
 
-    f6j45 = coherent_wig6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
+    f6j45 = coherent_intw6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
 
-    f6j51 = coherent_wig6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
+    f6j51 = coherent_intw6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
     
     # compute sum over intertwiners as matrix multiplications 
     return transpose(sum( (w6j12) .* transpose(f6j23 * f6j34 * f6j45 * f6j51) , dims = 1))
@@ -96,15 +96,15 @@ function partial_cohnX_vertex2(x,jays,vcs)
     intw_range(j45, j14, j24, j34), intw_range(j15, j25, j35, j45)
     
     # multiply components (of the first index) of the wigner 6j matrix by the coherent 4j vector (for the intertwiner index)
-    w6j12 = wig6j_matrix((I1,I2),j25,x,j13,j12)
+    w6j12 = intw6j_matrix((I1,I2),j25,x,j13,j12)
 
-    w6j23 = wig6j_matrix((I2,I3),j13,x,j24,j23)
+    w6j23 = intw6j_matrix((I2,I3),j13,x,j24,j23)
 
-    f6j34 = coherent_wig6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
+    f6j34 = coherent_intw6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
 
-    f6j45 = coherent_wig6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
+    f6j45 = coherent_intw6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
 
-    f6j51 = coherent_wig6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
+    f6j51 = coherent_intw6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
     
     # compute sum over intertwiners as matrix multiplications 
     # returns a matrix

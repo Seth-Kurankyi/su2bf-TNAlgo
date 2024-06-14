@@ -18,9 +18,8 @@ export  is_ang,
         coherent4j, 
         vector_coherent4j, 
         vector_coherent4jPh,
-        wig6j_matrix,
         intw6j_matrix,
-        coherent_wig6j_matrix
+        coherent_intw6j_matrix
 
 #======== Utility functions for SU(2) angular momentum and Wigner symbols ============#
 
@@ -209,7 +208,7 @@ end
 """
 Compute Wigner 6j symbol (i1, ja, jb ; i2, jb, jc) as a matrix in the indices i1, i2   
 """
-function wig6j_matrix(IRs, ja, x, jb, jc)
+function intw6j_matrix(IRs, ja, x, jb, jc)
     I1,I2 = IRs # range of values for indices i1, i2 (intertwiners)
     l1,l2 = length(I1), length(I2)
     sol = Matrix{Float64}(undef, l1, l2) 
@@ -262,13 +261,13 @@ end
 Compute coherent 6j-intertwiner matrix as a product of wigner 6j matrix and coherent 4j vector    
 """
 
-# function coherent_wig6j_matrix(IRs, ja, x, jb, jc,j1,j2,nvs)
+# function coherent_intw6j_matrix(IRs, ja, x, jb, jc,j1,j2,nvs)
 #     w6j = wig6j_matrix(IRs, ja, x, jb, jc)
 #     vecph = vector_coherent4jPh(jb,jc,j1,j2,nvs)
 #     return w6j .* vecph 
 # end
 
-function coherent_wig6j_matrix(cohvecph,IRs, ja, x, jb, jc)
+function coherent_intw6j_matrix(cohvecph,IRs, ja, x, jb, jc)
     w6j = wig6j_matrix(IRs, ja, x, jb, jc)
     return w6j .* cohvecph 
 end

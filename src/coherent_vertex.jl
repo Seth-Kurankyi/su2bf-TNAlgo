@@ -34,15 +34,15 @@ function cohnX_vertex(x,jays,vcs)
     intw_range(j45, j14, j24, j34), intw_range(j15, j25, j35, j45)
 
     #coherent 6j matrices
-    f6j12 = coherent_wig6j_matrix(vcs[1],(I1,I2),j25,x,j13,j12)
+    f6j12 = coherent_intw6j_matrix(vcs[1],(I1,I2),j25,x,j13,j12)
 
-    f6j23 = coherent_wig6j_matrix(vcs[2],(I2,I3),j13,x,j24,j23)
+    f6j23 = coherent_intw6j_matrix(vcs[2],(I2,I3),j13,x,j24,j23)
 
-    f6j34 = coherent_wig6j_matrix(vcs[3],(I3,I4),j24,x,j35,j34)
+    f6j34 = coherent_intw6j_matrix(vcs[3],(I3,I4),j24,x,j35,j34)
 
-    f6j45 = coherent_wig6j_matrix(vcs[4],(I4,I5),j35,x,j14,j45)
+    f6j45 = coherent_intw6j_matrix(vcs[4],(I4,I5),j35,x,j14,j45)
 
-    f6j51 = coherent_wig6j_matrix(vcs[5],(I5,I1),j14,x,j25,j15)
+    f6j51 = coherent_intw6j_matrix(vcs[5],(I5,I1),j14,x,j25,j15)
 
     # compute trace of matrix multiplications for the intertwiners 
     return sum( transpose(f6j12) .* (f6j23 * f6j34 * f6j45 * f6j51) )
