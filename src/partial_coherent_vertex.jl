@@ -15,6 +15,7 @@ using .su2functions
 Compute the partial coherent vertex amplitude for fixed virtual spin x: 
     the coherent {4j} vectors are considered as inputs
 """
+# bulk intertwiner chosen to be 1 and boundary intertwiners 2,3,4,5
 function partial_cohnX_vertex1(x,jays,vcs)
     #note the order of the spins, 1,2,3,4,5 labels the edges (tetrahedron)
     # the labels are equivalent to the bar notation where 1,2,3,4,5 label vertices.. 
@@ -44,7 +45,7 @@ function partial_cohnX_vertex1(x,jays,vcs)
     return transpose(sum( (w612) .* transpose(w623 * w634 * w645 * w651) , dims = 1))
 end
 
-
+# bulk intertwiners chosen to be 1,2 and boundary intertwiners 3,4,5
 function partial_cohnX_vertex2(x,jays,vcs)
     #note the order of the spins, 1,2,3,4,5 labels the edges (tetrahedron)
     # the labels are equivalent to the bar notation where 1,2,3,4,5 label vertices.. 
