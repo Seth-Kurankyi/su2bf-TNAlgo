@@ -9,7 +9,10 @@ include("su2functions.jl")
 using .su2functions
 
 #export the following functions 
-#export  
+export  partial_cohnX_vertex1,
+        partial_cohn_vertex1,
+        partial_cohnX_vertex2,
+        partial_cohn_vertex2
 
 """
 Compute the partial coherent vertex amplitude for fixed virtual spin x: 
@@ -28,22 +31,18 @@ function partial_cohnX_vertex1(x,jays,vcs)
     intw_range(j45, j14, j24, j34), intw_range(j15, j25, j35, j45)
     
     # multiply components (of the first index) of the wigner 6j matrix by the coherent 4j vector (for the intertwiner index)
-    w612 = wig6j_matrix((I1,I2),j25,x,j13,j12)
+    w6j12 = wig6j_matrix((I1,I2),j25,x,j13,j12)
 
-    w623 = wig6j_matrix((I2,I3),j13,x,j24,j23)
-    w623 = w623 .* vcs[1]
+    f6j23 = coherent_wig6j_matrix(vcs[1],(I2,I3),j13,x,j24,j23)
 
-    w634 = wig6j_matrix((I3,I4),j24,x,j35,j34)
-    w634 = w634 .* vcs[2]
+    f6j34 = coherent_wig6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
 
-    w645 = wig6j_matrix((I4,I5),j35,x,j14,j45)
-    w645 = w645 .* vcs[3]
+    f6j45 = coherent_wig6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
 
-    w651 = wig6j_matrix((I5,I1),j14,x,j25,j15)
-    w651 = w651 .* vcs[4]
+    f6j51 = coherent_wig6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
     
     # compute sum over intertwiners as matrix multiplications 
-    return transpose(sum( (w612) .* transpose(w623 * w634 * w645 * w651) , dims = 1))
+    return transpose(sum( (w6j12) .* transpose(f6j23 * f6j34 * f6j45 * f6j51) , dims = 1))
 end
 
 """
@@ -74,11 +73,9 @@ function partial_cohn_vertex1(jays,nvs)
     #length of intertwiner range for I1 
     lenI1 = length(intw_range(j12,j13,j14,j15))
     sol = zeros(lenI1)*0.0im 
-    # range of values for the virtual spin 
-    x_range = min( min(j12+j13,j14+j15)+j23, min(j24+j23,j12+j25)+j13, min(j13+j23,j34+j35)+j24,
-                min(j34+j24,j14+j45)+j35 , min(j15+j25,j35+j45)+j14 )
     
-    @simd for x in x_range:-1:0
+    # range of values for the virtual spin 
+    @simd for x in virtualx_range(jays)
         sol += (-1.0+0.0im)^(sum(jays))*(dim_j(x))*partial_cohnX_vertex1(x,jays,vcs)
     end
     return sol
@@ -99,22 +96,19 @@ function partial_cohnX_vertex2(x,jays,vcs)
     intw_range(j45, j14, j24, j34), intw_range(j15, j25, j35, j45)
     
     # multiply components (of the first index) of the wigner 6j matrix by the coherent 4j vector (for the intertwiner index)
-    w612 = wig6j_matrix((I1,I2),j25,x,j13,j12)
+    w6j12 = wig6j_matrix((I1,I2),j25,x,j13,j12)
 
-    w623 = wig6j_matrix((I2,I3),j13,x,j24,j23)
+    w6j23 = wig6j_matrix((I2,I3),j13,x,j24,j23)
 
-    w634 = wig6j_matrix((I3,I4),j24,x,j35,j34)
-    w634 = w634 .* vcs[1]
+    f6j34 = coherent_wig6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
 
-    w645 = wig6j_matrix((I4,I5),j35,x,j14,j45)
-    w645 = w645 .* vcs[2]
+    f6j45 = coherent_wig6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
 
-    w651 = wig6j_matrix((I5,I1),j14,x,j25,j15)
-    w651 = w651 .* vcs[3]
+    f6j51 = coherent_wig6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
     
     # compute sum over intertwiners as matrix multiplications 
     # returns a matrix
-    return (w612) .* transpose(w623 * w634 * w645 * w651) 
+    return (w6j12) .* transpose(w6j23 * f6j34 * f6j45 * f6j51) 
 end
 
 
@@ -147,11 +141,8 @@ function partial_cohn_vertex2(jays,nvs)
     #length of intertwiner range for I1 
     lenI1,lenI2 = length(intw_range(j12,j13,j14,j15)), length(intw_range(j23,j24,j25,j12))
     sol = zeros(lenI1,lenI2)*0.0im 
-    # range of values for the virtual spin 
-    x_range = min( min(j12+j13,j14+j15)+j23, min(j24+j23,j12+j25)+j13, min(j13+j23,j34+j35)+j24,
-                min(j34+j24,j14+j45)+j35 , min(j15+j25,j35+j45)+j14 )
     
-    @simd for x in x_range:-1:0
+    @simd for x in virtualx_range(jays)
         sol += (-1.0+0.0im)^(sum(jays))*(dim_j(x))*partial_cohnX_vertex2(x,jays,vcs)
     end
     return sol
