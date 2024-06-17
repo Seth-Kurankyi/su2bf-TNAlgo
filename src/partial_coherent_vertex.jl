@@ -50,14 +50,14 @@ Compute the partial coherent vertex amplitude for given the spins and normal vec
 """
 function partial_cohn_vertex1(jays,nvs)
     j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
-    nv1,nv2,nv3,nv4,nv5 = nvs
+    #nv1,nv2,nv3,nv4,nv5 = nvs
     
     # !!!!!!!   IMPORTANT   !!!!!!!
     """ The order of the spins are crucial for the matching the coherent vectors and the input normal vectors: 
         Note that order of the spins should match the intertwiners and also match the order of the normal vectors (inputs)
     """
     # The order of the spins are the same as the order of the unit normal vectors as inputs
-    jjs = (j12,j13,j14,j15),(j23,j24,j25,j12),(j34,j35,j13,j23),(j45,j14,j24,j34),(j15,j25,j35,j45)
+    jjs = (j23,j24,j25,j12),(j34,j35,j13,j23),(j45,j14,j24,j34),(j15,j25,j35,j45)
 
         
     # intertwiner ranges 
@@ -100,11 +100,11 @@ function partial_cohnX_vertex2(x,jays,vcs)
 
     w6j23 = intw6j_matrix((I2,I3),j13,x,j24,j23)
 
-    f6j34 = coherent_intw6j_matrix(vcs[2],(I3,I4),j24,x,j35,j34)
+    f6j34 = coherent_intw6j_matrix(vcs[1],(I3,I4),j24,x,j35,j34)
 
-    f6j45 = coherent_intw6j_matrix(vcs[3],(I4,I5),j35,x,j14,j45)
+    f6j45 = coherent_intw6j_matrix(vcs[2],(I4,I5),j35,x,j14,j45)
 
-    f6j51 = coherent_intw6j_matrix(vcs[4],(I5,I1),j14,x,j25,j15)
+    f6j51 = coherent_intw6j_matrix(vcs[3],(I5,I1),j14,x,j25,j15)
     
     # compute sum over intertwiners as matrix multiplications 
     # returns a matrix
@@ -118,14 +118,14 @@ Compute the partial coherent vertex amplitude for given the spins and normal vec
 """
 function partial_cohn_vertex2(jays,nvs)
     j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
-    nv1,nv2,nv3,nv4,nv5 = nvs
+    #nv1,nv2,nv3,nv4,nv5 = nvs
     
     # !!!!!!!   IMPORTANT   !!!!!!!
     """ The order of the spins are crucial for the matching the coherent vectors and the input normal vectors: 
         Note that order of the spins should match the intertwiners and also match the order of the normal vectors (inputs)
     """
     # The order of the spins are the same as the order of the unit normal vectors as inputs
-    jjs = (j12,j13,j14,j15),(j23,j24,j25,j12),(j34,j35,j13,j23),(j45,j14,j24,j34),(j15,j25,j35,j45)
+    jjs = (j34,j35,j13,j23),(j45,j14,j24,j34),(j15,j25,j35,j45)
 
         
     # intertwiner ranges 
@@ -133,7 +133,7 @@ function partial_cohn_vertex2(jays,nvs)
 
     # compute the coherent {4j} vector for all 5 boundary edges 
     vcs = Dict()
-    for i in 1:4 
+    for i in 1:3 
         vcs[i] = vector_coherent4jPh(jjs[i],nvs[i])
     end
     

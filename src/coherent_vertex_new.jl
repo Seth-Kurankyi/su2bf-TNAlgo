@@ -2,11 +2,13 @@
 Module `coherent_vertex` compute the coherent vertex amplitude for generic spin assignments and normal vectors in terms of matrix contractions
 """
 
-module coherent_vertex
+module coherent_vertex_new
 
 # use functions from su2functions 
 include("su2functions.jl")
 using .su2functions
+
+using Tullio 
 
 
 #export the following 
@@ -45,7 +47,7 @@ function cohnX_vertex(x,jays,vcs)
     f6j51 = coherent_intw6j_matrix(vcs[5],(I5,I1),j14,x,j25,j15)
 
     # compute trace of matrix multiplications for the intertwiners 
-    return sum( transpose(f6j12) .* (f6j23 * f6j34 * f6j45 * f6j51) )
+    return @tullio S = f6j12[i,j] * f6j23[j,k] * f6j34[k,l] * f6j45[l,m] * f6j51[m,i]
 end
 
 """
