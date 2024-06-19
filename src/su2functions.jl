@@ -14,7 +14,7 @@ export  is_ang,
         dim_j, 
         wig3j, 
         wig6j, 
-        wignermatrix, 
+        wignerDj, 
         coherent4j, 
         vector_coherent4j, 
         vector_coherent4jPh,
@@ -108,15 +108,15 @@ end
 Compute components of Wigner matrix as a function of 3D unit normal vecto in the |+> 
 """
 # Note that the normal vector nv (input) has to a unit vector |nv|=1! 
-function wignermatrix_nvec(j, m, nv)::ComplexF64
+function wignerDj(j, m, nv)::ComplexF64
     return wignermatrix_ang(j,m,atan(nv[2],nv[1]),acos(nv[3]))
 end
 
 """
-Memoized version of wignermatrix_nvec function
+Memoized version of wignerDj function
 """
-@memoize function wignermatrix(j, m, nv)::ComplexF64
-   return wignermatrix_nvec(j, m, nv)
+@memoize function wignerDj(j, m, nv)::ComplexF64
+   return wignerDj(j, m, nv)
 end
 
 # Functions for Wigner 3j symbols
@@ -147,14 +147,14 @@ function coherent4j(iota, jay, nvecs)::ComplexF64
     j1, j2, j3, j4 = jay
     n1, n2, n3, n4 = nvecs
     for m1 in -j1:j1
-        wm1 = wignermatrix(j1, m1, n1) 
+        wm1 = wignerDj(j1, m1, n1) 
         if wm1 != 0.0
             for m2 in -j2:j2
                 if is_ang(iota, m1 + m2) 
-                    wm2 = wignermatrix(j2, m2, n2)
+                    wm2 = wignerDj(j2, m2, n2)
                     if wm2 != 0.0
                         for m3 in max(-j3, -m1 - m2 - j4):min(j3, j4 - m1 - m2)
-                            wm34 = wignermatrix(j3, m3, n3) * wignermatrix(j4, -(m1 + m2 + m3), n4)
+                            wm34 = wignerDj(j3, m3, n3) * wignerDj(j4, -(m1 + m2 + m3), n4)
                             w4j = wigner4j(iota, j1, j2, j3, j4, m1, m2, m3)
                             if wm34 != 0.0 && w4j != 0.0
                                 r += wm1 * wm2 * wm34 * w4j
