@@ -22,7 +22,7 @@ The inputs are the 10 spins and the normal vectors for boundary edges. It ouputs
 
 For example, the partial-coherent vertex amplitude with normals vectors `nn1,nn2,nn3` for boundary edges outputs a matrix with the bulk intertwiners as indices. 
 
-`>> partial_cohn_vertex2(ones(10),nn1,nn2,nn3)`
+`>> partial_cohn_vertex2(ones(10),[nn1,nn2,nn3])`
 
 
 
