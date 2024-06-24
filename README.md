@@ -9,7 +9,7 @@ This repository contains functions for computing spin foam amplitudes for SU(2) 
 
 
 ### Vertex amplitudes:
-Coherent vertex amplitudes are computed using matrix contractions. The input are 10 spins $j_{ab}$ and a set of unit normal vectors $\bf n$ for each edge. It outputs a complex number. The arrangements of the normal vectors is very important. See the functions for more details. 
+Coherent vertex amplitudes are computed using matrix contractions. The input are 10 spins $j_{ab}$ and a set of unit normal vectors $\bf n$ for each edge. It outputs a complex number. The arrangements of the normal vectors is very crucial. See the functions for more details. 
 
 To compute the coherent vertex amplitude with equal spins `ones(10)` and normal vectors `nn1,nn2,nn3,nn4,nn5` do the following:
 
