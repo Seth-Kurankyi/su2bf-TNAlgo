@@ -9,7 +9,10 @@ Spin foam amplitudes are typically associated with a 2-complex which is dual to 
 
 
 ### Vertex amplitudes:
-Coherent vertex amplitudes are computed using matrix contractions. The input are 10 spins `$j_{ab}$` and a set of unit normal vectors $\bf n$ for each edge.
+Coherent vertex amplitudes are computed using matrix contractions. The input are 10 spins $j_{ab}$ and a set of unit normal vectors $\bf n$ for each edge.
+Here's a sample code to compute the coherent vertex amplitude with equal spins `ones(10)` and normal vectors `nn1,nn2,nn3,nn4,nn5`
+
+> coherent_vertex(ones(10),[nn1,nn2,nn3,nn4,nn5])
 
 
 
