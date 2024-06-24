@@ -20,7 +20,7 @@ To compute the coherent vertex amplitude with equal spins `ones(10)` and normal 
 Partial coherent vertex amplitudes are associated with vertices with both bulk and boundary edges. They are useful for computing amplitudes for complexes with multiple vertices. 
 The inputs are the 10 spins and the normal vectors for boundary edges. It ouputs a $n$-valent tensor if there are $n$ bulk edges. 
 
-For example, the partial-coherent vertex amplitude with normals vectors `nn1,nn2,nn3` for boundary edges outputs a matrix with the bulk intertwiners as indices. 
+For example, the partial-coherent vertex amplitude with normals vectors `(nn1,nn2,nn3)` for boundary edges outputs a matrix with the bulk intertwiners as indices. 
 
 `>> partial_cohn_vertex2(ones(10),[nn1,nn2,nn3])`
 
