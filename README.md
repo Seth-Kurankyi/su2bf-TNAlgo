@@ -16,5 +16,8 @@ To compute the coherent vertex amplitude with equal spins `ones(10)` and normal 
 `>> coherent_vertex1(ones(10),[nn1,nn2,nn3,nn4,nn5])`
 
 
+### Partial-Coherent amplitudes:
+Partial coherent vertex amplitudes are associated with vertices with both bulk and boundary edges. They are useful for computing amplitudes for complexes with multiple vertices. 
+
 
 
