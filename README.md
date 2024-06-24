@@ -18,6 +18,9 @@ To compute the coherent vertex amplitude with equal spins `ones(10)` and normal 
 
 ### Partial-Coherent amplitudes:
 Partial coherent vertex amplitudes are associated with vertices with both bulk and boundary edges. They are useful for computing amplitudes for complexes with multiple vertices. 
+The inputs are the 10 spins and the normal vectors for bulk edges. It ouputs a $n$-valent tensor if there are $n$ bulk edges. 
+
+
 
 
 
