@@ -1,6 +1,6 @@
-This repository contains functions for computing spin foam amplitudes for SU(2) BF theory. 
+This repository contains functions for computing spin foam amplitudes for SU(2) BF theory. The algorithms here improve the computation of spin foam amplitudes via tensor contractions of low-valence tensors. 
 
-The amplitudes are typically associated with a 2-complex dual to a triangulation. 
+Spin foam amplitudes are typically associated with a 2-complex which is dual to a triangulation. 
 
 **Vertex amplitudes:** 
-Vertex amplitudes are computed using matrix contractions. 
+COherent vertex amplitudes are computed using matrix contractions. The input are 10 spins $j_{ab}$ and a set of unit normal vectors for each edge.
