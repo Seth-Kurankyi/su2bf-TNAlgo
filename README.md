@@ -18,7 +18,7 @@ To compute the coherent vertex amplitude with spins `(j12,j13,j14,j15,j23,j24,j2
 
 ### Partial-Coherent amplitudes:
 Partial coherent vertex amplitudes are associated with vertices with both bulk and boundary edges. They are useful for computing amplitudes for complexes with multiple vertices. 
-The inputs are the 10 spins and the normal vectors for boundary edges. It ouputs a $n$-valent tensor if there are $n$ bulk edges. 
+The inputs are the 10 spins and the normal vectors for boundary edges. It ouputs a $k$-valent tensor if there are $k$ bulk edges. 
 
 For example, the partial-coherent vertex amplitude with normals vectors `(nn1,nn2,nn3)` for boundary edges outputs a matrix with the bulk intertwiners as indices. 
 
