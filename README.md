@@ -24,8 +24,6 @@ The inputs are the 10 spins and the normal vectors for boundary edges. It ouputs
 
 For example, the partial-coherent vertex amplitude with normals vectors `(nn1,nn2,nn3)` for boundary edges outputs a matrix with the bulk intertwiners as indices. 
 
-`>> partial_cohn_vertex2([j12,j13,j14,j15,j23,j24,j25,j34,j35,j45],[nn1,nn2,nn3])`
-
 ```julia
 >> partial_cohn_vertex2([j12, j13, j14, j15, j23, j24, j25, j34, j35, j45], [nn1, nn2, nn3])
 ```
