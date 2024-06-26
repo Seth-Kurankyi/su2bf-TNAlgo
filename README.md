@@ -27,10 +27,10 @@ For example, the partial-coherent vertex amplitude with normals vectors `(nn1,nn
 `>> partial_cohn_vertex2([j12,j13,j14,j15,j23,j24,j25,j34,j35,j45],[nn1,nn2,nn3])`
 
 ```julia
-partial_cohn_vertex2([j12, j13, j14, j15, j23, j24, j25, j34, j35, j45], [nn1, nn2, nn3])
+>> partial_cohn_vertex2([j12, j13, j14, j15, j23, j24, j25, j34, j35, j45], [nn1, nn2, nn3])
 ```
 
-### Installation
+<!-- ### Installation
 To install the necessary dependencies and clone this repository, you can use the following commands in your Julia REPL:
 
 ```julia
@@ -45,6 +45,7 @@ Then clone the repository:
 ```sh
 git clone https://github.com/Seth-Kurankyi/su2bf-TNAlgo.git
 ```
+ -->
 
 ### Usage
 To use the functions provided in this repository, you can include the files in your Julia script or directly in the REPL. For example:
