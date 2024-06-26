@@ -53,9 +53,6 @@ To use the functions provided in this repository, you can include the files in y
 ```julia
 include("path_to_your_repository/coherent_vertex.jl")
 include("path_to_your_repository/partial_cohn_vertex.jl")
-
-result = coherent_vertex1([j12, j13, j14, j15, j23, j24, j25, j34, j35, j45], [nn1, nn2, nn3, nn4, nn5])
-println(result)
 ```
 
 ### Contributions
