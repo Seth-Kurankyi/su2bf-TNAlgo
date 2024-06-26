@@ -14,7 +14,7 @@ Coherent vertex amplitudes are computed using matrix contractions. The input are
 To compute the coherent vertex amplitude with spins `(j12,j13,j14,j15,j23,j24,j25,j34,j35,j45)` and set of normal vectors `(nn1,nn2,nn3,nn4,nn5)` do the following:
 
 ```julia
->> coherent_vertex1([j12, j13, j14, j15, j23, j24, j25, j34, j35, j45], [nn1, nn2, nn3, nn4, nn5])
+>> coherent_vertex1([j12,j13,j14,j15,j23,j24,j25,j34,j35,j45], [nn1,nn2,nn3,nn4,nn5])
 ```
 
 
@@ -25,7 +25,7 @@ The inputs are the 10 spins and the normal vectors for boundary edges. It ouputs
 For example, the partial-coherent vertex amplitude with normals vectors `(nn1,nn2,nn3)` for boundary edges outputs a matrix with the bulk intertwiners as indices. 
 
 ```julia
->> partial_cohn_vertex2([j12, j13, j14, j15, j23, j24, j25, j34, j35, j45], [nn1, nn2, nn3])
+>> partial_cohn_vertex2([j12,j13,j14,j15,j23,j24,j25,j34,j35,j45], [nn1,nn2,nn3])
 ```
 
 <!-- ### Installation
