@@ -1,6 +1,6 @@
 This repository contains functions for computing spin foam amplitudes for SU(2) BF theory. The algorithms here improve the computation of spin foam amplitudes via tensor contractions of low-valence tensors. They are solely written in **Julia** language. 
 
-<!-- Spin foam amplitude is typically associated with a 2-complex which is dual to a triangulations. Tbe boundary data for the coherent amplitudes are spin labels and normal vectors. -->
+<!-- Spin foam amplitudes are typically associated with a 2-complex which is dual to a triangulations. Tbe boundary data for the coherent amplitudes are spin labels and normal vectors. -->
 
 
 ### Dependencies
