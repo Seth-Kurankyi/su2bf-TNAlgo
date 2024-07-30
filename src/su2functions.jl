@@ -108,7 +108,7 @@ end
 Compute components of Wigner matrix as a function of 3D unit normal vecto in the |+> 
 """
 # Note that the normal vector nv (input) has to a unit vector |nv|=1! 
-function wignerDjm(j, m, nv)::ComplexF64
+function wignerDjm_vec(j, m, nv)::ComplexF64
     return wignermatrix_ang(j,m,atan(nv[2],nv[1]),acos(nv[3]))
 end
 
@@ -116,7 +116,7 @@ end
 Memoized version of wignerDjm function
 """
 @memoize function wignerDjm(j, m, nv)::ComplexF64
-   return wignerDjm(j, m, nv)
+   return wignerDjm_vec(j, m, nv)
 end
 
 # Functions for Wigner 3j symbols
