@@ -1,4 +1,4 @@
-module gconsu2
+module su2gc_tetra
 
 using Cuba
 using LinearAlgebra
