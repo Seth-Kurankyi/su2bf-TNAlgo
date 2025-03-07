@@ -56,7 +56,7 @@ Compute the coherent vertex amplitude for given the spins and normal vectors as 
 """
 function cohn_vertex1(jays,nvs)
     j12,j13,j14,j15,j23,j24,j25,j34,j35,j45 = jays
-    #nv1,nv2,nv3,nv4,nv5 = nvs
+    #nv1,nv2,nv3,nv4,nv5 = nvs ..
     
     # !!!!!!!   IMPORTANT   !!!!!!!
     """ The order of the spins are crucial for the matching the coherent vectors and the input normal vectors: 
