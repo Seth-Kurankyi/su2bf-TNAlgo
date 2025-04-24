@@ -14,7 +14,7 @@ end
 
 #Take product of all four legs to get the integrand 
 function Gtet(js,angs1,angs2,x,y,z)
-    prod([g1su2(js[i],angs1[i][1],angs1[i][2],angs2[i][1],angs2[i][2],x,y,z) for i in 1:4])
+    prod([gsu2(js[i],angs1[i][1],angs1[i][2],angs2[i][1],angs2[i][2],x,y,z) for i in 1:4])
 end
 
 # Use Cuba to integrate.. note that cuba performs integration in the domain [0,1] 
@@ -23,7 +23,7 @@ function gconsu2_int(js,angs1,angs2)
     
     function integrand(x, f)
         x[1],x[2],x[3] = x[1] *2pi, x[2]*pi, x[3]*4pi
-        f[1],f[2] = reim((pi/2)*sin(x[2])*G1tet(js,angs1,angs2,x[1],x[2],x[3]) )
+        f[1],f[2] = reim((pi/2)*sin(x[2])*Gtet(js,angs1,angs2,x[1],x[2],x[3]) )
     end
     result = complex(cuhre(integrand, 3, 2,key=11)[1]...)
 end
