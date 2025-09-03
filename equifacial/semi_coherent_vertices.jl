@@ -3,7 +3,7 @@ Module `partial_coherent_vertex` compute the coherent vertex amplitude for equal
     The 'semi' refers to mixture of boundary and bulk edges or intertwiners 
 """
 
-#change semi to partial
+#change semi to semi_coherent_vertices 
 module semi_coherent_vertices
 
 #include su2 functions from src 
