@@ -4,7 +4,7 @@ Module `coherent_vertex` compute the coherent vertex amplitude for generic spin 
 
 module coherent_vertex
 
-# use functions from su2functions 
+# use export functions from su2functions 
 include("su2functions.jl")
 using .su2functions
 
